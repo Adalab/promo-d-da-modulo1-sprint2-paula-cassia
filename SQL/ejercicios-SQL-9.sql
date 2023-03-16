@@ -52,3 +52,8 @@ y el nombre del producto, y el total de dinero por el que se ha vendido cada tip
 los descuentos).
 Pista Necesitaréis usar 3 joins.*/
 
+SELECT products.product_name AS ProductName, categories.category_name AS Category, SUM((order_details.unit_price * order_details.quantity)-((order_details.unit_price * order_details.quantity)* order_details.discount)) AS DineroTotal
+FROM categories 
+INNER JOIN products USING (category_id)
+INNER JOIN order_details USING (product_id)
+GROUP BY products.product_name, categories.category_name;
