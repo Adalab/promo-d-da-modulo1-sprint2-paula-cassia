@@ -33,12 +33,12 @@ WHERE city LIKE 'A%' OR city LIKE 'B%';
 /*Número de pedidos que han hecho en las ciudades que empiezan con L.
 En este caso, nuestro objetivo es devolver los mismos campos que en la query anterior el número de total de pedidos que han hecho todas las ciudades que empiezan por "L".*/
 
-SELECT DISTINCT city AS ciudad, company_name AS empresa, contact_name AS persona_contacto, COUNT(order_id*company_name) AS numero_pedidos
+SELECT DISTINCT city AS ciudad, company_name AS empresa, contact_name AS persona_contacto, COUNT(order_id) AS numero_pedidos
 FROM customers
 INNER JOIN orders
 ON customers.customer_id = orders.customer_id
 WHERE city LIKE 'L%'
-GROUP BY order_id;
+GROUP BY city, company_name, contact_name;
 
 /*Todos los clientes cuyo "contact_title" no incluya "Sales".
 Nuestro objetivo es extraer los clientes que no tienen el contacto "Sales" en su "contact_title". 
